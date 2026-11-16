@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Churro &amp; Co. — A Little Crunch. A Lot of Happiness.</title>
+  <link rel="icon" type="image/jpeg" href="images/hero 1.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* ===== CHURRO SHOP BRAND (2 core colours + neutrals) ===== */
+      --choco: #3E2418;
+      --caramel: #D89A4A;
+
+      --cream: #FBF3E6;
+      --peach: #F7E4D0;
+      --cream-deep: #F2E4CE;
+      --ink: #2B1A10;
+      --muted: #7A6553;
+
+      --bg-primary: #FBF3E6;
+      --bg-secondary: #F7E4D0;
+      --bg-dark: #2B1A10;
+      --text-primary: #2B1A10;
+      --text-secondary: #7A6553;
+      --text-light: #A08C78;
+      --border-color: #EAD9C1;
+      --card-bg: #FFFBF3;
+      --section-bg: #F7E4D0;
+
+      --accent: #D89A4A;
+      --accent-dark: #B87A2E;
+      --accent-soft: #F6E4CB;
+
+      --shadow: rgba(62, 36, 24, 0.12);
+      --navbar-bg: #3E2418;
+      --navbar-border: #2A170F;
+
+      --transition: 0.35s ease;
+    }
+
+    /* ===== DARK MODE ===== */
+    [data-theme="dark"] {
+      --bg-primary: #0F0A07;
+      --bg-secondary: #1A120C;
+      --text-primary: #FFFFFF;
+      --text-secondary: #D6CBBE;
+      --text-light: #A89685;
+      --border-color: #2A1E14;
+      --shadow: rgba(0, 0, 0, 0.7);
+      --card-bg: #1A120C;
+      --section-bg: #0F0A07;
+      --navbar-bg: #000000;
+      --navbar-border: #1A120C;
+      --accent-soft: #2A1E14;
+    }
+    [dir="rtl"] { text-align: right; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.65;
+      transition: background var(--transition), color var(--transition);
+      overflow-x: hidden;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 1.75rem; }
+
+    h1, h2, h3, .serif { font-family: 'Playfair Display', Georgia, serif; }
+
+    .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2.4px;
+      color: var(--accent-dark);
+      margin-bottom: 1rem;
+    }
+    .sec-eyebrow::before, .sec-eyebrow::after {
+      content: ''; width: 26px; height: 1px; background: var(--accent);
+    }
+    .sec-title {
+      font-size: 3rem; font-weight: 600; line-height: 1.12;
+      letter-spacing: -0.02em; color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .sec-title em { font-style: italic; color: var(--accent-dark); font-weight: 500; }
+    [data-theme="dark"] .sec-title em { color: var(--caramel); }
+    .sec-sub {
+      font-size: 1.02rem; color: var(--text-secondary);
+      line-height: 1.75; max-width: 620px;
+    }
+
+    [data-theme="dark"] body { color: #FFFFFF; }
+    [data-theme="dark"] h1,
+    [data-theme="dark"] h2,
+    [data-theme="dark"] h3,
+    [data-theme="dark"] h4 { color: #FFFFFF; }
+    [data-theme="dark"] .sec-title { color: #FFFFFF; }
+    [data-theme="dark"] .sec-sub { color: #D6CBBE; }
+    [data-theme="dark"] .sec-eyebrow { color: var(--caramel); }
+
+    section { position: relative; }
+    section + section::before {
+      content: ''; position: absolute; top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: min(1280px, 92%); height: 1px;
+      background: linear-gradient(90deg, transparent 0%, var(--border-color) 15%, var(--border-color) 85%, transparent 100%);
+      z-index: 5; pointer-events: none;
+    }
+    [data-theme="dark"] section + section::before {
+      background: linear-gradient(90deg, transparent 0%, rgba(216,154,74,0.55) 12%, rgba(216,154,74,0.85) 50%, rgba(216,154,74,0.55) 88%, transparent 100%);
+      height: 1.5px;
+      box-shadow: 0 0 12px rgba(216,154,74,0.25);
+    }
+    section + section::after {
+      content: ''; position: absolute; top: -3px; left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 7px; height: 7px; background: var(--caramel);
+      opacity: 0.8; z-index: 6; pointer-events: none;
+    }
+    [data-theme="dark"] section + section::after {
+      box-shadow: 0 0 10px rgba(216,154,74,0.7); opacity: 1;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      padding: 1rem 1.75rem;
+      border-bottom: 1px solid var(--navbar-border);
+      background: var(--navbar-bg);
+      position: sticky; top: 0; z-index: 100;
+      transition: background var(--transition), border-color var(--transition), box-shadow 0.3s ease;
+    }
+    .navbar.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.25); }
+
+    .logo, .footer-logo-link {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; transition: transform 0.3s ease; flex-shrink: 0;
+    }
+    .logo:hover, .footer-logo-link:hover { transform: scale(1.03); }
+
+    .logo-mark {
+      width: 38px; height: 38px; flex-shrink: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--caramel);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--caramel); font-size: 1rem;
+      transition: transform 0.4s ease, background 0.3s ease;
+    }
+    .logo:hover .logo-mark { transform: rotate(-8deg); background: rgba(216,154,74,0.15); }
+
+    .logo-text { display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
+    .logo-text .logo-script {
+      font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+      font-weight: 500; font-size: 1.45rem; letter-spacing: -0.3px; color: #ffffff;
+    }
+    .logo-text .logo-caps {
+      font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.8rem;
+      letter-spacing: 2.5px; text-transform: uppercase; color: var(--caramel);
+    }
+
+    .nav-links { display: flex; flex-wrap: wrap; gap: 1.6rem; align-items: center; list-style: none; font-weight: 500; }
+    .nav-links > li > a {
+      color: #ffffff; text-decoration: none; font-size: 0.92rem;
+      letter-spacing: 0.3px; transition: color 0.2s; position: relative;
+    }
+    .nav-links > li > a:hover { color: var(--caramel) !important; }
+    .nav-links > li > a.active { color: var(--caramel) !important; }
+
+    .dropdown { position: relative; cursor: pointer; }
+    .dropdown > a { display: flex; align-items: center; gap: 5px; }
+    .dropdown-content {
+      display: none; position: absolute; background: #FFFBF3; min-width: 165px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28); border-radius: 12px;
+      padding: 0.55rem 0; top: 1.9rem; left: -12px; z-index: 10;
+      border: 1px solid var(--border-color); opacity: 0; transform: translateY(-8px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    [data-theme="dark"] .dropdown-content { background: #1A120C; border: 1px solid #2A1E14; }
+    [dir="rtl"] .dropdown-content { left: auto; right: -12px; }
+    .dropdown-content.show { display: block; opacity: 1; transform: translateY(0); }
+    .dropdown-content a {
+      display: block; padding: 0.6rem 1.4rem; color: #3E2418 !important;
+      font-weight: 500; font-size: 0.88rem; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    [data-theme="dark"] .dropdown-content a { color: #FFFFFF !important; }
+    .dropdown-content a:hover { background: #F6E4CB; color: #B87A2E !important; }
+    [data-theme="dark"] .dropdown-content a:hover { background: #2A1E14; color: var(--caramel) !important; }
+    .dropdown-content a.active-drop { color: #B87A2E !important; background: #F6E4CB; font-weight: 700; }
+    [data-theme="dark"] .dropdown-content a.active-drop { color: var(--caramel) !important; background: #2A1E14; }
+
+    .nav-controls { display: flex; align-items: center; gap: 0.7rem; }
+    .nav-controls .toggle-btn {
+      background: rgba(255,255,255,0.10);
+      border: 1.5px solid rgba(247,228,208,0.4);
+      border-radius: 50%; width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #ffffff; font-size: 0.72rem; font-weight: 700;
+      transition: all 0.2s; font-family: 'Inter', sans-serif;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .nav-controls .toggle-btn i { color: #ffffff; font-size: 0.9rem; }
+    .nav-controls .toggle-btn:hover { background: rgba(216,154,74,0.25); border-color: var(--caramel); }
+    .nav-controls .toggle-btn:hover i { color: var(--caramel); }
+
+    .nav-controls .inspect-btn {
+      background: var(--caramel); color: #2B1A10; border: none;
+      padding: 0.7rem 1.6rem; border-radius: 60px;
+      font-weight: 700; font-size: 0.86rem; cursor: pointer; transition: 0.28s;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+      letter-spacing: 0.3px;
+    }
+    .nav-controls .inspect-btn:hover {
+      background: #F7E4D0; color: #3E2418; transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+    }
+
+    [data-theme="dark"] .navbar { background: #000000; border-bottom-color: #1A120C; }
+    [data-theme="dark"] .nav-links > li > a { color: #FFFFFF !important; }
+    [data-theme="dark"] .nav-links > li > a:hover,
+    [data-theme="dark"] .nav-links > li > a.active { color: var(--caramel) !important; }
+    [data-theme="dark"] .logo-text .logo-script { color: #FFFFFF; }
+    [data-theme="dark"] .logo-text .logo-caps { color: var(--caramel); }
+    [data-theme="dark"] .logo-mark { border-color: var(--caramel); color: var(--caramel); }
+    [data-theme="dark"] .nav-controls .toggle-btn {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.4);
+      color: #FFFFFF;
+    }
+    [data-theme="dark"] .nav-controls .toggle-btn i { color: #FFFFFF; }
+    [data-theme="dark"] .nav-controls .toggle-btn:hover {
+      background: rgba(216,154,74,0.20); border-color: var(--caramel);
+    }
+    [data-theme="dark"] .nav-controls .toggle-btn:hover i { color: var(--caramel); }
+    [data-theme="dark"] .nav-controls .inspect-btn { background: var(--caramel); color: #2B1A10; }
+    [data-theme="dark"] .nav-controls .inspect-btn:hover { background: #F7E4D0; color: #3E2418; }
+
+    /* ===== SECTION 1: HERO ===== */
+    .hero-section {
+      position: relative;
+      min-height: calc(100vh - 74px);
+      max-height: 820px;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 5rem 1.75rem 5rem;
+      background:
+        linear-gradient(160deg, rgba(62,36,24,0.80) 0%, rgba(43,26,16,0.58) 55%, rgba(62,36,24,0.75) 100%),
+        url('images/hero 1.jpg') center 45%/cover no-repeat,
+        var(--choco);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-section::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 18% 25%, rgba(216,154,74,0.22), transparent 50%),
+        radial-gradient(circle at 82% 75%, rgba(184,122,46,0.35), transparent 55%);
+      z-index: 1; pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 3; max-width: 900px; margin: 0 auto; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(216,154,74,0.22); color: #F6E4CB;
+      padding: 0.5rem 1.3rem; border-radius: 60px;
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2.6px; border: 1px solid rgba(216,154,74,0.55);
+      margin-bottom: 1.6rem; backdrop-filter: blur(6px);
+    }
+    .hero-badge i { color: var(--caramel); }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 5rem; font-weight: 600; line-height: 1.05;
+      letter-spacing: -0.03em; color: #FFFBF3; margin-bottom: 1.3rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.45);
+    }
+    .hero-title em { font-style: italic; font-weight: 500; color: var(--caramel); display: inline-block; }
+    .hero-title .line2 { display: block; }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,251,243,0.92); line-height: 1.75;
+      max-width: 640px; margin: 0 auto 2.2rem; font-weight: 300;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.4);
+    }
+    .hero-actions {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .hero-btn-primary {
+      background: var(--caramel); color: #2B1A10; border: none;
+      padding: 1rem 2.4rem; border-radius: 60px;
+      font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: 0.28s;
+      display: inline-flex; align-items: center; gap: 10px; text-decoration: none;
+      letter-spacing: 0.4px;
+    }
+    .hero-btn-primary:hover { background: #F7E4D0; color: #3E2418; transform: translateY(-3px); box-shadow: 0 14px 32px rgba(0,0,0,0.35); }
+    .hero-btn-secondary {
+      background: transparent; color: #FFFBF3;
+      border: 1.5px solid rgba(255,251,243,0.65);
+      padding: 0.95rem 2.1rem; border-radius: 60px;
+      font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: 0.28s;
+      display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+      letter-spacing: 0.4px;
+    }
+    .hero-btn-secondary:hover { background: rgba(255,251,243,0.12); border-color: var(--caramel); color: var(--caramel); transform: translateY(-3px); }
+
+    /* ===== SECTION 2: STATS ===== */
+    .stats-section { background: var(--bg-primary); padding: 4.5rem 0; }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .stat-card {
+      text-align: center; padding: 2rem 1.2rem;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    }
+    .stat-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px var(--shadow); border-color: var(--caramel); }
+    .stat-card i {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-dark);
+      font-size: 1.3rem; margin-bottom: 1rem;
+    }
+    [data-theme="dark"] .stat-card i { background: #2A1E14; color: var(--caramel); }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem; font-weight: 700;
+      color: var(--accent-dark); line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    [data-theme="dark"] .stat-num { color: var(--caramel); }
+    .stat-label {
+      font-size: 0.85rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.4px; color: var(--text-secondary);
+    }
+
+    /* ===== SECTION 3: FLAVOURS ===== */
+    .flavours-section { background: var(--bg-primary); padding: 6rem 0 6.5rem; }
+    .section-head { text-align: center; margin: 0 auto 3.5rem; max-width: 700px; }
+    .section-head .sec-sub { margin: 0 auto; }
+
+    .flavour-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem;
+    }
+    .flavour-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      display: flex; flex-direction: column;
+    }
+    .flavour-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 26px 50px var(--shadow);
+      border-color: var(--caramel);
+    }
+    .flavour-img-wrap { position: relative; overflow: hidden; aspect-ratio: 4/3.2; }
+    .flavour-img-wrap img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.7s ease;
+    }
+    .flavour-card:hover .flavour-img-wrap img { transform: scale(1.09); }
+    .flavour-img-wrap::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(62,36,24,0.35), transparent 55%);
+      pointer-events: none;
+    }
+    .flavour-body { padding: 1.4rem 1.4rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+    .flavour-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 600; color: var(--text-primary);
+      line-height: 1.15; margin-bottom: 0.45rem;
+    }
+    [data-theme="dark"] .flavour-name { color: #FFFFFF; }
+    .flavour-desc {
+      font-size: 0.85rem; color: var(--text-secondary);
+      line-height: 1.65; margin-bottom: 1rem; flex: 1;
+    }
+    [data-theme="dark"] .flavour-desc { color: #D6CBBE; }
+    .flavour-tag {
+      font-size: 0.66rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.6px; color: var(--accent-dark);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    [data-theme="dark"] .flavour-tag { color: var(--caramel); }
+
+    .center-btn { text-align: center; margin-top: 3rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--choco); color: var(--cream);
+      padding: 0.95rem 2.2rem; border-radius: 60px;
+      font-weight: 700; font-size: 0.9rem; text-decoration: none;
+      transition: 0.28s; letter-spacing: 0.3px;
+    }
+    [data-theme="dark"] .btn-primary { background: var(--caramel); color: #2B1A10; }
+    .btn-primary:hover { background: var(--accent-dark); color: #FFFBF3; transform: translateY(-3px); box-shadow: 0 14px 30px var(--shadow); }
+    [data-theme="dark"] .btn-primary:hover { background: var(--cream); color: var(--choco); }
+
+    /* ===== SECTION 4: BEYOND CHURROS ===== */
+    .beyond-section { background: var(--section-bg); padding: 6.5rem 0; }
+    .beyond-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem;
+    }
+    .beyond-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px; overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+      display: flex; flex-direction: column;
+    }
+    .beyond-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 26px 50px var(--shadow);
+      border-color: var(--caramel);
+    }
+    .beyond-img-wrap { overflow: hidden; aspect-ratio: 1/1; position: relative; }
+    .beyond-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease; }
+    .beyond-card:hover .beyond-img-wrap img { transform: scale(1.09); }
+    .beyond-body { padding: 1.3rem 1.3rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .beyond-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--text-primary); margin-bottom: 0.4rem;
+    }
+    [data-theme="dark"] .beyond-name { color: #FFFFFF; }
+    .beyond-desc { font-size: 0.82rem; color: var(--text-secondary); line-height: 1.65; flex: 1; }
+    [data-theme="dark"] .beyond-desc { color: #D6CBBE; }
+
+    /* ===== SECTION 5: FRESHLY MADE ===== */
+    .fresh-section { background: var(--bg-primary); padding: 6.5rem 0; }
+    .fresh-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4.5rem; align-items: center;
+    }
+    .fresh-img-wrap {
+      position: relative;
+      border-radius: 200px 200px 24px 24px;
+      overflow: hidden;
+      height: 520px;
+      box-shadow: 0 30px 60px var(--shadow);
+    }
+    .fresh-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .fresh-img-wrap:hover img { transform: scale(1.05); }
+    .fresh-copy .sec-title { margin-bottom: 1.1rem; }
+    .fresh-copy p {
+      font-size: 0.98rem; color: var(--text-secondary);
+      line-height: 1.85; margin-bottom: 1.8rem;
+    }
+    [data-theme="dark"] .fresh-copy p { color: #D6CBBE; }
+    .fresh-highlights {
+      list-style: none; display: flex; flex-direction: column; gap: 1rem;
+    }
+    .fresh-highlights li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 0.92rem; color: var(--text-primary); font-weight: 500;
+    }
+    [data-theme="dark"] .fresh-highlights li { color: #FFFFFF; }
+    .fresh-highlights li i {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; flex-shrink: 0; margin-top: 2px;
+      border: 1px solid rgba(216,154,74,0.35);
+    }
+    [data-theme="dark"] .fresh-highlights li i { background: #2A1E14; color: var(--caramel); border-color: rgba(216,154,74,0.4); }
+    .fresh-highlights li span small {
+      display: block; font-weight: 400; color: var(--text-secondary);
+      font-size: 0.82rem; margin-top: 2px;
+    }
+    [data-theme="dark"] .fresh-highlights li span small { color: #D6CBBE; }
+
+    /* ===== SECTION 6: SWEET CELEBRATION ===== */
+    .celebration-section { background: var(--section-bg); padding: 6.5rem 0; }
+    .celebration-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem;
+    }
+    .celebration-card {
+      position: relative; overflow: hidden;
+      border-radius: 20px; min-height: 400px;
+      display: flex; align-items: flex-end;
+      transition: transform 0.4s ease;
+    }
+    .celebration-card:hover { transform: translateY(-8px); }
+    .celebration-card img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; transition: transform 0.8s ease;
+    }
+    .celebration-card:hover img { transform: scale(1.07); }
+    .celebration-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(43,26,16,0.92) 0%, rgba(43,26,16,0.35) 50%, transparent 80%);
+    }
+    .celebration-body {
+      position: relative; z-index: 2; padding: 1.8rem 1.6rem;
+    }
+    .celebration-tag {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 1.8px;
+      text-transform: uppercase; color: var(--caramel);
+      margin-bottom: 0.6rem;
+    }
+    .celebration-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem; font-weight: 600; color: #FFFBF3;
+      margin-bottom: 0.45rem; line-height: 1.15;
+    }
+    .celebration-body p {
+      font-size: 0.85rem; color: rgba(255,251,243,0.85);
+      line-height: 1.6; max-width: 300px;
+    }
+
+    /* ===== SECTION 7: EVENTS ===== */
+    .events-section { background: var(--bg-primary); padding: 6.5rem 0; }
+    .events-grid {
+      display: grid; grid-template-columns: 1.1fr 1fr;
+      gap: 4.5rem; align-items: center;
+    }
+    .events-img-wrap {
+      border-radius: 24px; overflow: hidden;
+      height: 520px;
+      box-shadow: 0 30px 60px var(--shadow);
+    }
+    .events-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+    .events-img-wrap:hover img { transform: scale(1.05); }
+    .events-copy .sec-title { margin-bottom: 1.1rem; }
+    .events-copy > p {
+      font-size: 0.98rem; color: var(--text-secondary);
+      line-height: 1.85; margin-bottom: 1.8rem;
+    }
+    [data-theme="dark"] .events-copy > p { color: #D6CBBE; }
+    .event-highlights {
+      list-style: none; display: flex; flex-direction: column; gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .event-highlights li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: 0.92rem; color: var(--text-primary); font-weight: 500;
+    }
+    [data-theme="dark"] .event-highlights li { color: #FFFFFF; }
+    .event-highlights li i {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; flex-shrink: 0; margin-top: 2px;
+      border: 1px solid rgba(216,154,74,0.35);
+    }
+    [data-theme="dark"] .event-highlights li i { background: #2A1E14; color: var(--caramel); border-color: rgba(216,154,74,0.4); }
+    .event-highlights li span small {
+      display: block; font-weight: 400; color: var(--text-secondary);
+      font-size: 0.82rem; margin-top: 2px;
+    }
+    [data-theme="dark"] .event-highlights li span small { color: #D6CBBE; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--accent-dark);
+      border: 1.5px solid var(--accent-dark);
+      padding: 0.85rem 2rem; border-radius: 60px;
+      font-weight: 600; font-size: 0.88rem; text-decoration: none;
+      transition: 0.28s; letter-spacing: 0.3px;
+    }
+    [data-theme="dark"] .btn-outline { color: var(--caramel); border-color: var(--caramel); }
+    .btn-outline:hover { background: var(--accent-dark); color: #FFFBF3; transform: translateY(-3px); }
+    [data-theme="dark"] .btn-outline:hover { background: var(--caramel); color: #2B1A10; }
+
+   /* ===== SECTION 8: FINAL CTA (rounded box style, no image) ===== */
+.cta-section { background: var(--bg-primary); padding: 2rem 0 4.5rem; }
+.cta-box {
+  position: relative; overflow: hidden;
+  border-radius: 28px;
+  padding: 3.5rem 2.5rem;
+  text-align: center;
+  background: linear-gradient(135deg, #3E2418 0%, #58321C 60%, #3E2418 100%);
+}
+.cta-box::before {
+  content: ''; position: absolute; top: -40%; right: -12%;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: rgba(216,154,74,0.14); pointer-events: none;
+}
+.cta-box::after {
+  content: ''; position: absolute; bottom: -45%; left: -10%;
+  width: 300px; height: 300px; border-radius: 50%;
+  border: 1px solid rgba(216,154,74,0.22); pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; max-width: 640px; margin: 0 auto; }
+.cta-inner .sec-eyebrow { color: var(--caramel); justify-content: center; margin-bottom: 0.8rem; }
+.cta-inner .sec-eyebrow::before, .cta-inner .sec-eyebrow::after { background: var(--caramel); }
+.cta-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.6rem; font-weight: 600; line-height: 1.1;
+  color: #FFFBF3; margin-bottom: 0.95rem; letter-spacing: -0.02em;
+}
+.cta-title em { font-style: italic; color: var(--caramel); }
+.cta-inner p {
+  color: rgba(255,251,243,0.88); font-size: 1rem;
+  line-height: 1.7; margin-bottom: 1.8rem; font-weight: 300;
+  max-width: 520px; margin-left: auto; margin-right: auto;
+}
+.cta-buttons { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.9rem; }
+.cta-btn-primary {
+  background: var(--caramel); color: #2B1A10;
+  padding: 0.95rem 2.2rem; border-radius: 60px;
+  font-weight: 700; font-size: 0.9rem; text-decoration: none;
+  transition: 0.28s; display: inline-flex; align-items: center; gap: 9px;
+}
+.cta-btn-primary:hover { background: #F7E4D0; color: #3E2418; transform: translateY(-3px); box-shadow: 0 14px 30px rgba(0,0,0,0.35); }
+.cta-btn-secondary {
+  background: transparent; color: #FFFBF3;
+  border: 1.5px solid rgba(255,251,243,0.6);
+  padding: 0.88rem 2rem; border-radius: 60px;
+  font-weight: 600; font-size: 0.9rem; text-decoration: none;
+  transition: 0.28s; display: inline-flex; align-items: center; gap: 9px;
+}
+.cta-btn-secondary:hover { background: rgba(255,251,243,0.12); border-color: var(--caramel); color: var(--caramel); transform: translateY(-3px); }
+
+[data-theme="dark"] .cta-section { background: var(--bg-primary); }
+[data-theme="dark"] .cta-box {
+  background: linear-gradient(135deg, #2B1A10 0%, #3E2418 60%, #2B1A10 100%);
+}
+
+    /* ===== HAMBURGER & MOBILE NAV ===== */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 10px 12px;
+      border-radius: 8px; z-index: 1001;
+      flex-shrink: 0; position: fixed;
+      top: 15px; right: 15px;
+      background: #3E2418; border: 1px solid #2A170F;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .hamburger span { display: block; width: 26px; height: 3px; background: #FBF3E6; border-radius: 3px; transition: all 0.3s ease; }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+    [dir="rtl"] .hamburger { right: auto; left: 15px; }
+    [data-theme="dark"] .hamburger { background: #000000; border-color: #1A120C; }
+    [data-theme="dark"] .hamburger span { background: #FFFFFF; }
+
+    .mobile-nav-drawer {
+      position: fixed; top: 0; right: -100%;
+      width: min(300px, 85vw); height: 100vh;
+      background: var(--bg-primary);
+      border-left: 2px solid var(--caramel);
+      z-index: 1000; transition: right 0.3s ease;
+      overflow-y: auto; box-shadow: -10px 0 30px var(--shadow);
+      display: flex; flex-direction: column;
+    }
+    [dir="rtl"] .mobile-nav-drawer { right: auto; left: -100%; border-left: none; border-right: 2px solid var(--caramel); }
+    .mobile-nav-drawer.active { right: 0; }
+    [dir="rtl"] .mobile-nav-drawer.active { left: 0; right: auto; }
+
+    .drawer-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 20px 14px 20px;
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0; background: #3E2418;
+    }
+    [data-theme="dark"] .drawer-header { background: #000000; }
+    .drawer-header .logo-text .logo-script { color: #ffffff !important; }
+    .drawer-header .logo-text .logo-caps { color: var(--caramel) !important; }
+    .close-drawer {
+      background: none; border: none; color: #ffffff;
+      font-size: 24px; cursor: pointer; padding: 4px 8px; transition: 0.2s;
+      display: flex; align-items: center; justify-content: center; line-height: 1;
+    }
+    .close-drawer:hover { color: var(--caramel); transform: rotate(90deg); }
+
+    .mobile-nav-drawer ul {
+      list-style: none; margin: 0; padding: 16px 20px 40px 20px;
+      display: flex; flex-direction: column; gap: 4px; flex: 1;
+    }
+    .mobile-nav-drawer ul li { width: 100%; }
+    .mobile-nav-drawer ul li a {
+      color: var(--text-primary); text-decoration: none;
+      font-size: 15px; font-weight: 500;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; border-radius: 8px;
+      transition: 0.2s; width: 100%; opacity: 0.85;
+    }
+    [data-theme="dark"] .mobile-nav-drawer ul li a { color: #FFFFFF; }
+    .mobile-nav-drawer ul li a:hover, .mobile-nav-drawer ul li a.active {
+      color: var(--accent-dark); background: var(--bg-secondary); opacity: 1;
+    }
+    [data-theme="dark"] .mobile-nav-drawer ul li a:hover,
+    [data-theme="dark"] .mobile-nav-drawer ul li a.active { color: var(--caramel); background: #1A120C; }
+
+    .mobile-cta {
+      margin-top: 12px; border-top: 1px solid var(--border-color);
+      padding-top: 14px; display: flex; flex-direction: column; gap: 8px;
+    }
+    .mobile-cta .mobile-inspect-btn {
+      width: 100%; text-align: center; justify-content: center;
+      padding: 12px 16px; border-radius: 25px;
+      text-decoration: none; font-weight: 600; font-size: 14px;
+      display: flex; align-items: center; gap: 8px;
+      background: var(--caramel); color: #2B1A10; transition: 0.25s;
+    }
+    .mobile-cta .mobile-inspect-btn:hover { background: var(--accent-dark); color: #FFFBF3; transform: translateY(-2px); }
+    .mobile-actions { margin-top: 8px; gap: 8px; width: 100%; display: flex; flex-wrap: wrap; }
+    .mobile-actions button {
+      border-radius: 25px; padding: 8px 14px; flex: 1;
+      font-size: 13px; gap: 6px; min-width: 80px; height: 38px;
+      background: var(--bg-secondary); border: 1px solid var(--border-color);
+      color: var(--text-primary); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: 0.3s; font-weight: 500;
+    }
+    [data-theme="dark"] .mobile-actions button { background: #1A120C; border-color: #2A1E14; color: #FFFFFF; }
+    .mobile-actions button:hover { border-color: var(--caramel); background: var(--accent-soft); }
+    .nav-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999; }
+    .nav-overlay.active { display: block; }
+    body.menu-open { overflow: hidden !important; position: fixed !important; width: 100% !important; top: 0; left: 0; right: 0; }
+
+    /* ===== FOOTER ===== */
+    footer { background: #2B1A10; color: #C7B4A0; padding: 3.5rem 0 1.5rem; }
+    [data-theme="dark"] footer { background: #000000; }
+    .footer-container {
+      max-width: 1280px; margin: 0 auto; padding: 0 1.75rem;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2.5rem; margin-bottom: 2rem;
+    }
+    .footer-box { display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-box p { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; line-height: 1.8; color: #C7B4A0; }
+    [data-theme="dark"] .footer-box p { color: #D6CBBE; }
+    .footer-box p i { width: 20px; color: var(--caramel); text-align: center; flex-shrink: 0; margin-top: 4px; }
+    .footer-box h2 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; color: #FFFBF3; margin-bottom: 0.4rem; letter-spacing: 0.3px; }
+    [data-theme="dark"] .footer-box h2 { color: #FFFFFF; }
+    .footer-box > a { color: #C7B4A0; text-decoration: none; font-size: 0.9rem; transition: 0.2s; display: block; line-height: 2; }
+    [data-theme="dark"] .footer-box > a { color: #D6CBBE; }
+    .footer-box > a:hover { color: var(--caramel); padding-left: 4px; }
+    [dir="rtl"] .footer-box > a:hover { padding-left: 0; padding-right: 4px; }
+    .social { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+    .social a {
+      background: rgba(247,228,208,0.07); color: #C7B4A0;
+      width: 38px; height: 38px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.95rem; transition: 0.3s ease; text-decoration: none;
+    }
+    .social a:hover { background: var(--caramel); color: #2B1A10; transform: translateY(-3px); }
+    .social a.x-icon { font-size: 0; }
+    .social a.x-icon svg { width: 15px; height: 15px; fill: currentColor; }
+    .social a.x-icon:hover svg { fill: #2B1A10; }
+    footer hr { max-width: 1280px; margin: 0 auto; border: none; border-top: 1px solid rgba(247,228,208,0.10); padding: 0 1.75rem; }
+    footer .copy { max-width: 1280px; margin: 1.2rem auto 0; padding: 0 1.75rem; text-align: center; font-size: 0.85rem; color: #8E7F72; }
+    [data-theme="dark"] footer .copy { color: #A89685; }
+    footer .copy span { color: var(--caramel); }
+
+    .footer-box .footer-logo-link {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; margin-bottom: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    .footer-box .footer-logo-link:hover { transform: scale(1.03); }
+    .footer-box .footer-logo-link .logo-mark {
+      width: 38px; height: 38px; border-radius: 50%;
+      border: 1.5px solid var(--caramel);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--caramel); font-size: 1rem; flex-shrink: 0;
+      transition: transform 0.4s ease, background 0.3s ease;
+    }
+    .footer-box .footer-logo-link:hover .logo-mark { transform: rotate(-8deg); background: rgba(216,154,74,0.15); }
+    .footer-box .footer-logo-link .logo-text { display: inline-flex; align-items: baseline; gap: 6px; line-height: 1; }
+    .footer-box .footer-logo-link .logo-text .logo-script {
+      font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+      font-weight: 500; font-size: 1.45rem; letter-spacing: -0.3px; color: #ffffff;
+    }
+    .footer-box .footer-logo-link .logo-text .logo-caps {
+      font-family: 'Inter', sans-serif; font-weight: 800; font-size: 0.8rem;
+      letter-spacing: 2.5px; text-transform: uppercase; color: var(--caramel);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1100px) {
+      .flavour-grid { grid-template-columns: repeat(2, 1fr); }
+      .beyond-grid { grid-template-columns: repeat(2, 1fr); }
+      .celebration-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1024px) {
+      .nav-links { display: none !important; }
+      .nav-controls { display: none !important; }
+      .hamburger { display: flex !important; }
+      .hero-title { font-size: 3.8rem; }
+      .sec-title { font-size: 2.5rem; }
+      .cta-title { font-size: 2.3rem; }
+      .fresh-grid, .events-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .fresh-img-wrap { height: 420px; max-width: 460px; margin: 0 auto; border-radius: 24px; }
+      .events-img-wrap { height: 420px; order: 2; }
+      .events-copy { order: 1; }
+    }
+    @media (max-width: 860px) and (min-width: 768px) {
+      .footer-container { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 767px) {
+      .container { padding: 0 1.25rem; }
+      .navbar { padding: 0.9rem 1.25rem; }
+
+      .hero-section { min-height: 92vh; padding: 4rem 1.25rem 5rem; }
+      .hero-badge { font-size: 0.58rem; letter-spacing: 1.8px; padding: 0.4rem 1rem; margin-bottom: 1.2rem; }
+      .hero-title { font-size: 2.6rem; line-height: 1.08; }
+      .hero-sub { font-size: 0.92rem; margin-bottom: 1.8rem; }
+      .hero-actions { flex-direction: column; align-items: stretch; gap: 0.7rem; }
+      .hero-btn-primary, .hero-btn-secondary { justify-content: center; width: 100%; padding: 0.85rem 1.6rem; }
+
+      .stats-section { padding: 3rem 0; }
+      .flavours-section, .beyond-section, .fresh-section,
+      .celebration-section, .events-section { padding: 4rem 0; }
+
+      .sec-title { font-size: 2rem; }
+      .sec-sub { font-size: 0.9rem; }
+      .section-head { margin-bottom: 2.4rem; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .stat-card { padding: 1.5rem 0.9rem; }
+      .stat-num { font-size: 1.9rem; }
+      .stat-label { font-size: 0.72rem; letter-spacing: 1px; }
+      .stat-card i { width: 46px; height: 46px; font-size: 1.05rem; margin-bottom: 0.7rem; }
+
+      .flavour-grid, .beyond-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .flavour-name { font-size: 1.35rem; }
+      .beyond-name { font-size: 1.2rem; }
+
+      .fresh-img-wrap { height: 340px; }
+      .events-img-wrap { height: 320px; }
+      .celebration-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+      .celebration-card { min-height: 300px; }
+      .celebration-body h3 { font-size: 1.35rem; }
+
+      .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+
+      .cta-section { padding: 1.5rem 0 3.5rem; }
+      .cta-box { border-radius: 22px; padding: 2.4rem 1.5rem; }
+      .cta-title { font-size: 1.9rem; }
+      .cta-inner p { font-size: 0.92rem; margin-bottom: 1.5rem; }
+      .cta-buttons { flex-direction: column; align-items: stretch; }
+      .cta-btn-primary, .cta-btn-secondary { justify-content: center; width: 100%; }
+
+      footer { padding: 2.4rem 0 1rem; }
+      .footer-container { grid-template-columns: 1fr; gap: 1.6rem; padding: 0 1.25rem; text-align: left !important; }
+      .footer-box { text-align: left !important; align-items: flex-start !important; }
+      .footer-box p { font-size: 0.85rem; }
+      .footer-box h2 { font-size: 1.15rem; }
+      .footer-box > a { font-size: 0.85rem; }
+      .footer-box .social { justify-content: flex-start !important; }
+      .social a { width: 34px; height: 34px; font-size: 0.85rem; }
+      .social a.x-icon svg { width: 13px; height: 13px; }
+      .footer-box .footer-logo-link .logo-mark { width: 34px; height: 34px; }
+      .footer-box .footer-logo-link .logo-text .logo-script { font-size: 1.3rem; }
+      .footer-box .footer-logo-link .logo-text .logo-caps { font-size: 0.72rem; letter-spacing: 2px; }
+      footer .copy { font-size: 0.75rem; text-align: center !important; padding: 0 1.25rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.1rem; }
+      .hero-sub { font-size: 0.85rem; }
+      .hero-btn-primary, .hero-btn-secondary { padding: 0.8rem 1.3rem; font-size: 0.84rem; }
+
+      .sec-title { font-size: 1.7rem; }
+      .flavour-name { font-size: 1.25rem; }
+      .celebration-card { min-height: 270px; }
+      .fresh-img-wrap { height: 280px; }
+      .events-img-wrap { height: 260px; }
+
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-num { font-size: 1.7rem; }
+
+      .cta-box { padding: 2rem 1.2rem; border-radius: 18px; }
+      .cta-title { font-size: 1.6rem; }
+      .cta-inner p { font-size: 0.85rem; }
+      .cta-btn-primary, .cta-btn-secondary { padding: 0.8rem 1.4rem; font-size: 0.85rem; }
+
+      .footer-container { gap: 1.2rem; padding: 0 1.1rem; }
+      .footer-box p { font-size: 0.8rem; }
+      .footer-box h2 { font-size: 1.05rem; }
+      .footer-box > a { font-size: 0.8rem; }
+      .social a { width: 30px; height: 30px; font-size: 0.75rem; }
+      .footer-box .footer-logo-link .logo-mark { width: 30px; height: 30px; font-size: 0.9rem; }
+      .footer-box .footer-logo-link .logo-text .logo-script { font-size: 1.15rem; }
+      .footer-box .footer-logo-link .logo-text .logo-caps { font-size: 0.66rem; letter-spacing: 1.8px; }
+      footer .copy { font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; width:100%; padding:0;">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><i class="fas fa-cookie-bite"></i></span>
+        <span class="logo-text">
+          <span class="logo-script">Churro</span>
+          <span class="logo-caps">&amp; Co.</span>
+        </span>
+      </a>
+      <ul class="nav-links">
+        <li class="dropdown" id="homeDropdown">
+          <a href="#" onclick="toggleDropdown(event, 'dropdownHome')">Home <i class="fas fa-chevron-down" style="font-size:0.6rem;"></i></a>
+          <div class="dropdown-content" id="dropdownHome">
+            <a href="index.html" class="active-drop">Home 1</a>
+            <a href="home2.html">Home 2</a>
+          </div>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="toggle-btn" onclick="toggleRTL()" id="rtlBtn">RTL</button>
+        <button class="toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" id="themeToggle">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="menu.html" class="inspect-btn">
+          <i class="fas fa-ice-cream"></i> Explore Menu
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <!-- ===== MOBILE NAV DRAWER ===== -->
+  <div class="mobile-nav-drawer" id="mobileNav">
+    <div class="drawer-header">
+      <a href="index.html" class="logo">
+        <span class="logo-mark"><i class="fas fa-cookie-bite"></i></span>
+        <span class="logo-text">
+          <span class="logo-script">Churro</span>
+          <span class="logo-caps">&amp; Co.</span>
+        </span>
+      </a>
+      <button class="close-drawer" onclick="closeMenu()">✕</button>
+    </div>
+    <ul>
+      <li><a href="index.html" class="active">Home 1</a></li>
+      <li><a href="home2.html">Home 2</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li class="mobile-cta">
+        <a href="menu.html" class="mobile-inspect-btn">
+          <i class="fas fa-ice-cream"></i> Explore Menu
+        </a>
+      </li>
+      <li class="mobile-actions">
+        <button onclick="toggleMobileRTL()" id="mobileRtlBtn">
+          <i class="fas fa-exchange-alt"></i> <span id="mobileRtlLabel">RTL</span>
+        </button>
+        <button onclick="toggleMobileTheme()" id="mobileThemeBtn">
+          <i class="fas fa-moon" id="mobileThemeIcon"></i> <span id="mobileThemeLabel">Dark</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <span class="hero-badge">
+        <i class="fas fa-star"></i> Freshly Fried · Golden · Irresistible
+      </span>
+      <h1 class="hero-title">
+        A Little Crunch.<br>
+        <span class="line2"><em>A Lot of Happiness.</em></span>
+      </h1>
+      <p class="hero-sub">
+        Freshly fried, perfectly golden and covered in sweetness. Discover your new
+        favourite treat, one delicious bite at a time.
+      </p>
+      <div class="hero-actions">
+        <a href="menu.html" class="hero-btn-primary">
+          <i class="fas fa-book-open"></i> Explore Our Menu
+        </a>
+        <a href="#flavours" class="hero-btn-secondary" onclick="scrollToFlavours(event)">
+          <i class="fas fa-ice-cream"></i> Discover Our Flavours
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. STATS ============ -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <i class="fas fa-cookie-bite"></i>
+          <div class="stat-num">25+</div>
+          <div class="stat-label">Churro Flavours</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-heart"></i>
+          <div class="stat-num">15K+</div>
+          <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-award"></i>
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years of Craft</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-star"></i>
+          <div class="stat-num">4.9★</div>
+          <div class="stat-label">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. FLAVOUR LINEUP ============ -->
+  <section class="flavours-section" id="flavours">
+    <div class="container">
+      <div class="section-head">
+        <span class="sec-eyebrow">Our Flavours</span>
+        <h2 class="sec-title">Flavours Worth <em>Falling For.</em></h2>
+        <p class="sec-sub">
+          From timeless classics to irresistible combinations, there's a flavour
+          for every sweet craving.
+        </p>
+      </div>
+      <div class="flavour-grid">
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-cinnamon.jpg" alt="Classic Cinnamon Sugar Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Classic Cinnamon Sugar</h3>
+            <p class="flavour-desc">Traditional golden churros coated in cinnamon sugar — the timeless favourite.</p>
+            <span class="flavour-tag"><i class="fas fa-star"></i> Bestseller</span>
+          </div>
+        </article>
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-chocolate.jpg" alt="Chocolate Dream Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Chocolate Dream</h3>
+            <p class="flavour-desc">Crispy churros paired with rich chocolate sauce for the ultimate indulgence.</p>
+            <span class="flavour-tag"><i class="fas fa-fire"></i> Fan Favourite</span>
+          </div>
+        </article>
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-strawberry.jpg" alt="Strawberry Bliss Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Strawberry Bliss</h3>
+            <p class="flavour-desc">Sweet strawberry glaze with delicious toppings on warm golden churros.</p>
+            <span class="flavour-tag"><i class="fas fa-heart"></i> Seasonal</span>
+          </div>
+        </article>
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-caramel.jpg" alt="Caramel Crunch Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Caramel Crunch</h3>
+            <p class="flavour-desc">Churros finished with smooth caramel and crunchy golden toppings.</p>
+            <span class="flavour-tag"><i class="fas fa-crown"></i> Signature</span>
+          </div>
+        </article>
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-cookies.jpg" alt="Cookies and Cream Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Cookies &amp; Cream</h3>
+            <p class="flavour-desc">A creamy combination of cookie crumbs and sweet chocolate on crispy churros.</p>
+            <span class="flavour-tag"><i class="fas fa-cookie"></i> New</span>
+          </div>
+        </article>
+
+        <article class="flavour-card">
+          <div class="flavour-img-wrap">
+            <img src="images/flavour-nutella.jpg" alt="Nutella Delight Churros">
+          </div>
+          <div class="flavour-body">
+            <h3 class="flavour-name">Nutella Delight</h3>
+            <p class="flavour-desc">Churros filled or topped with rich hazelnut chocolate — pure bliss.</p>
+            <span class="flavour-tag"><i class="fas fa-fire-flame-curved"></i> Popular</span>
+          </div>
+        </article>
+
+      </div>
+      <div class="center-btn">
+        <a href="menu.html" class="btn-primary">
+          Explore All Flavours <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. BEYOND THE CLASSIC CHURRO ============ -->
+  <section class="beyond-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="sec-eyebrow">Fried Desserts</span>
+        <h2 class="sec-title">More Than Just <em>Churros.</em></h2>
+        <p class="sec-sub">
+          Discover a delicious collection of crispy, golden and irresistible fried desserts.
+        </p>
+      </div>
+      <div class="beyond-grid">
+
+        <article class="beyond-card">
+          <div class="beyond-img-wrap">
+            <img src="images/beyond-oreos.jpg" alt="Fried Oreos">
+          </div>
+          <div class="beyond-body">
+            <h3 class="beyond-name">Fried Oreos</h3>
+            <p class="beyond-desc">Golden-fried cookies with a soft and sweet centre — the ultimate indulgence.</p>
+          </div>
+        </article>
+
+        <article class="beyond-card">
+          <div class="beyond-img-wrap">
+            <img src="images/beyond-cinnamon-bites.jpg" alt="Cinnamon Bites">
+          </div>
+          <div class="beyond-body">
+            <h3 class="beyond-name">Cinnamon Bites</h3>
+            <p class="beyond-desc">Small crispy bites coated in cinnamon sugar — pop-in-your-mouth perfection.</p>
+          </div>
+        </article>
+
+        <article class="beyond-card">
+          <div class="beyond-img-wrap">
+            <img src="images/beyond-fritters.jpg" alt="Sweet Fritters">
+          </div>
+          <div class="beyond-body">
+            <h3 class="beyond-name">Sweet Fritters</h3>
+            <p class="beyond-desc">Light and golden fried treats with delicious toppings — a true comfort bite.</p>
+          </div>
+        </article>
+
+        <article class="beyond-card">
+          <div class="beyond-img-wrap">
+            <img src="images/beyond-sticks.jpg" alt="Dessert Sticks">
+          </div>
+          <div class="beyond-body">
+            <h3 class="beyond-name">Dessert Sticks</h3>
+            <p class="beyond-desc">Crispy dessert sticks served with your favourite dipping sauces on the side.</p>
+          </div>
+        </article>
+
+      </div>
+      <div class="center-btn">
+        <a href="menu.html" class="btn-primary">
+          View Our Full Menu <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. FRESHLY MADE ============ -->
+  <section class="fresh-section">
+    <div class="container">
+      <div class="fresh-grid">
+        <div class="fresh-img-wrap">
+          <img src="images/freshly-made.jpg" alt="Freshly fried churros being prepared">
+        </div>
+        <div class="fresh-copy">
+          <span class="sec-eyebrow">Freshly Made, Always</span>
+          <h2 class="sec-title">Golden, Crispy &amp; <em>Made With Love.</em></h2>
+          <p>
+            Every treat begins with care. From the perfect golden crunch to the final
+            touch of sweetness, we make every bite worth remembering.
+          </p>
+          <ul class="fresh-highlights">
+            <li>
+              <i class="fas fa-fire"></i>
+              <span>Freshly Prepared
+                <small>Fried to order, never sitting around</small>
+              </span>
+            </li>
+            <li>
+              <i class="fas fa-star"></i>
+              <span>Perfectly Golden
+                <small>Every churro checked for the perfect crisp</small>
+              </span>
+            </li>
+            <li>
+              <i class="fas fa-heart"></i>
+              <span>Made With Love
+                <small>Real ingredients, real care, every single time</small>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. SWEET CELEBRATION ============ -->
+  <section class="celebration-section">
+    <div class="container">
+      <div class="section-head">
+        <span class="sec-eyebrow">Celebrate With Us</span>
+        <h2 class="sec-title">Every Day Deserves <em>a Treat.</em></h2>
+        <p class="sec-sub">
+          Celebrate the season with exciting flavours, special creations and
+          limited-edition sweet surprises.
+        </p>
+      </div>
+      <div class="celebration-grid">
+
+        <div class="celebration-card">
+          <img src="images/celebration-seasonal.jpg" alt="Seasonal Specials">
+          <div class="celebration-body">
+            <span class="celebration-tag"><i class="fas fa-leaf"></i> Seasonal</span>
+            <h3>Seasonal Specials</h3>
+            <p>Discover flavours inspired by the season — fresh, warm and full of cheer.</p>
+          </div>
+        </div>
+
+        <div class="celebration-card">
+          <img src="images/celebration-limited.jpg" alt="Limited Edition Treats">
+          <div class="celebration-body">
+            <span class="celebration-tag"><i class="fas fa-clock"></i> Limited</span>
+            <h3>Limited Edition Treats</h3>
+            <p>Try something special before it's gone — small batches, big flavour.</p>
+          </div>
+        </div>
+
+        <div class="celebration-card">
+          <img src="images/celebration-festive.jpg" alt="Festive Favourites">
+          <div class="celebration-body">
+            <span class="celebration-tag"><i class="fas fa-gift"></i> Festive</span>
+            <h3>Festive Favourites</h3>
+            <p>Sweet creations made for every celebration — bring the joy to any table.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="center-btn">
+        <a href="events.html" class="btn-primary">
+          Explore Our Events <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. EVENTS ============ -->
+  <section class="events-section">
+    <div class="container">
+      <div class="events-grid">
+        <div class="events-img-wrap">
+          <img src="images/events-catering.jpg" alt="Churro dessert catering table setup">
+        </div>
+        <div class="events-copy">
+          <span class="sec-eyebrow">Bring the Sweetness</span>
+          <h2 class="sec-title">Let's Make Your Celebration <em>Sweeter.</em></h2>
+          <p>
+            From birthday parties to special celebrations, bring a little extra
+            sweetness to every gathering with our delicious dessert experience.
+          </p>
+          <ul class="event-highlights">
+            <li>
+              <i class="fas fa-cake-candles"></i>
+              <span>Birthday Celebrations
+                <small>Custom churro spreads for every age</small>
+              </span>
+            </li>
+            <li>
+              <i class="fas fa-champagne-glasses"></i>
+              <span>Private Parties
+                <small>Bring our kitchen to your venue</small>
+              </span>
+            </li>
+            <li>
+              <i class="fas fa-store"></i>
+              <span>Pop-up Events
+                <small>Fresh churros served on the spot</small>
+              </span>
+            </li>
+          </ul>
+          <a href="events.html" class="btn-outline">Explore Our Events <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FINAL CTA (rounded box) ============ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <div class="cta-inner">
+          <span class="sec-eyebrow">One Visit Is All It Takes</span>
+          <h2 class="cta-title">Your Next Sweet <em>Obsession Awaits.</em></h2>
+          <p>
+            One visit is all it takes to fall in love with the crunch, flavour and sweetness.
+          </p>
+          <div class="cta-buttons">
+            <a href="menu.html" class="cta-btn-primary">
+              <i class="fas fa-book-open"></i> Explore Our Menu
+            </a>
+            <a href="contact.html" class="cta-btn-secondary">
+              <i class="fas fa-envelope"></i> Contact Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-box">
+        <a href="index.html" class="footer-logo-link" onclick="scrollToTop()">
+          <span class="logo-mark"><i class="fas fa-cookie-bite"></i></span>
+          <span class="logo-text">
+            <span class="logo-script">Churro</span>
+            <span class="logo-caps">&amp; Co.</span>
+          </span>
+        </a>
+        <p>
+          Churro &amp; Co. — a fried dessert shop built around golden crunch, warm
+          sweetness and small moments made memorable. Freshly fried, always.
+        </p>
+      </div>
+      <div class="footer-box">
+        <h2>Quick Links</h2>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="menu.html">Menu</a>
+        <a href="events.html">Events</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-box">
+        <h2>Visit Us</h2>
+        <p><i class="fas fa-map-marker-alt"></i> 24 Sugar Lane, Soho, London W1D</p>
+        <p><i class="fas fa-phone"></i> +44 20 7946 0731</p>
+        <p><i class="fas fa-envelope"></i> hello@churroandco.co.uk</p>
+        <p><i class="fas fa-clock"></i> Mon – Sun : 11:00AM – 10:30PM</p>
+      </div>
+      <div class="footer-box">
+        <h2>Follow Us</h2>
+        <div class="social">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="X" class="x-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Google Reviews"><i class="fab fa-google"></i></a>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <p class="copy">© 2026 <span>Churro &amp; Co.</span> All Rights Reserved. A little crunch, a lot of happiness.</p>
+  </footer>
+
+  <script>
+    /* ===== DROPDOWN ===== */
+    let dropdownOpen = false;
+    function toggleDropdown(e, id) {
+      e.preventDefault(); e.stopPropagation();
+      const content = document.getElementById(id);
+      dropdownOpen = !dropdownOpen;
+      content.classList.toggle('show', dropdownOpen);
+      document.querySelectorAll('.dropdown-content').forEach(dc => {
+        if (dc.id !== id) dc.classList.remove('show');
+      });
+    }
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('homeDropdown');
+      if (dropdown && !dropdown.contains(e.target)) {
+        document.querySelectorAll('.dropdown-content').forEach(dc => dc.classList.remove('show'));
+        dropdownOpen = false;
+      }
+    });
+
+    /* ===== THEME ===== */
+    function applyTheme(theme) {
+      const themeIcon = document.getElementById('themeToggle')?.querySelector('i');
+      const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+      const mobileThemeLabel = document.getElementById('mobileThemeLabel');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        if (themeIcon) themeIcon.className = 'fas fa-sun';
+        if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-sun';
+        if (mobileThemeLabel) mobileThemeLabel.textContent = 'Light';
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+        if (themeIcon) themeIcon.className = 'fas fa-moon';
+        if (mobileThemeIcon) mobileThemeIcon.className = 'fas fa-moon';
+        if (mobileThemeLabel) mobileThemeLabel.textContent = 'Dark';
+      }
+    }
+    function toggleTheme() {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      localStorage.setItem('churro-theme', newTheme);
+      applyTheme(newTheme);
+    }
+    function toggleMobileTheme() { toggleTheme(); }
+
+    /* ===== RTL ===== */
+    function applyRTL(mode) {
+      const rtlBtn = document.getElementById('rtlBtn');
+      const mobileRtlLabel = document.getElementById('mobileRtlLabel');
+      if (mode === 'rtl') {
+        document.documentElement.setAttribute('dir', 'rtl');
+        if (rtlBtn) rtlBtn.textContent = 'LTR';
+        if (mobileRtlLabel) mobileRtlLabel.textContent = 'LTR';
+      } else {
+        document.documentElement.removeAttribute('dir');
+        if (rtlBtn) rtlBtn.textContent = 'RTL';
+        if (mobileRtlLabel) mobileRtlLabel.textContent = 'RTL';
+      }
+    }
+    function toggleRTL() {
+      const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+      const newMode = isRTL ? 'ltr' : 'rtl';
+      localStorage.setItem('churro-rtl', newMode);
+      applyRTL(newMode);
+    }
+    function toggleMobileRTL() { toggleRTL(); }
+
+    /* ===== MOBILE MENU ===== */
+    function toggleMenu(open) {
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+      const overlay = document.getElementById('navOverlay');
+      if (open) {
+        hamburger.classList.add('active');
+        mobileNav.classList.add('active');
+        if (overlay) overlay.classList.add('active');
+        document.body.classList.add('menu-open');
+      } else {
+        hamburger.classList.remove('active');
+        mobileNav.classList.remove('active');
+        if (overlay) overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+    }
+    function closeMenu() { toggleMenu(false); }
+    document.getElementById('hamburger').addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = document.getElementById('mobileNav').classList.contains('active');
+      toggleMenu(!isOpen);
+    });
+    document.getElementById('navOverlay').addEventListener('click', closeMenu);
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeMenu();
+        document.querySelectorAll('.dropdown-content.show').forEach(d => d.classList.remove('show'));
+      }
+    });
+    document.querySelectorAll('.mobile-nav-drawer ul li a').forEach(link => {
+      link.addEventListener('click', function() {
+        if (!this.classList.contains('dropdown-toggle')) closeMenu();
+      });
+    });
+
+    /* ===== SMOOTH SCROLL HELPERS ===== */
+    function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    function scrollToFlavours(e) {
+      e.preventDefault();
+      const el = document.getElementById('flavours');
+      if (el) {
+        const yOffset = -70;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    const navbarEl = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 20) navbarEl.classList.add('scrolled');
+      else navbarEl.classList.remove('scrolled');
+    });
+
+    /* ===== INIT ===== */
+    window.addEventListener('load', function() {
+      const savedTheme = localStorage.getItem('churro-theme') || 'light';
+      applyTheme(savedTheme);
+      const savedRTL = localStorage.getItem('churro-rtl') || 'ltr';
+      applyRTL(savedRTL);
+    });
+  </script>
+</body>
+</html>

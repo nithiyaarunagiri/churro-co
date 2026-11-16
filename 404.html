@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>Page Not Found — Churro &amp; Co.</title>
+  <link rel="icon" type="image/jpeg" href="images/hero 1.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --choco: #3E2418;
+      --caramel: #D89A4A;
+      --cream: #FBF3E6;
+      --peach: #F7E4D0;
+      --border-color: #EAD9C1;
+
+      --bg-primary: #FBF3E6;
+      --text-primary: #2B1A10;
+      --text-secondary: #7A6553;
+      
+      --accent-dark: #B87A2E;
+      --shadow: rgba(62, 36, 24, 0.12);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      background-image: 
+        linear-gradient(rgba(62, 36, 24, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(62, 36, 24, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .error-container {
+      max-width: 680px;
+      width: 100%;
+      position: relative;
+    }
+
+    .error-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 11rem;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 10px 30px var(--shadow);
+    }
+
+    .error-number .four {
+      color: var(--choco);
+    }
+
+    .error-number .zero {
+      color: var(--caramel);
+      margin: 0 1rem;
+      font-style: italic;
+      font-weight: 500;
+    }
+
+    .error-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--choco);
+      margin-bottom: 1.2rem;
+      line-height: 1.15;
+    }
+
+    .error-title em {
+      font-style: italic;
+      color: var(--caramel);
+    }
+
+    .error-sub {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-weight: 400;
+    }
+
+    .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--choco);
+      color: var(--cream);
+      padding: 1rem 2.4rem;
+      border-radius: 60px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: 0.3s ease;
+      letter-spacing: 0.3px;
+      box-shadow: 0 10px 24px rgba(62, 36, 24, 0.15);
+    }
+
+    .btn-home:hover {
+      background: var(--accent-dark);
+      color: #FFFBF3;
+      transform: translateY(-3px);
+      box-shadow: 0 16px 36px rgba(62, 36, 24, 0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 767px) {
+      .error-number {
+        font-size: 8rem;
+      }
+      .error-title {
+        font-size: 2rem;
+      }
+      .error-sub {
+        font-size: 0.95rem;
+      }
+      .btn-home {
+        padding: 0.9rem 2rem;
+        font-size: 0.88rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-number {
+        font-size: 6.5rem;
+      }
+      .error-title {
+        font-size: 1.6rem;
+      }
+      .error-sub {
+        font-size: 0.88rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="error-container">
+    <div class="error-number">
+      <span class="four">4</span>
+      <span class="zero">0</span>
+      <span class="four">4</span>
+    </div>
+    <h1 class="error-title">Looks Like This Page<br><em>Got Eaten.</em></h1>
+    <p class="error-sub">
+      The page you're looking for has been moved, renamed, or never existed. Don't worry — let's get you back to the sweetness.
+    </p>
+    <a href="index.html" class="btn-home">
+      <i class="fas fa-arrow-left"></i> Back To Home
+    </a>
+  </div>
+
+</body>
+</html>
